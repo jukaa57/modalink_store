@@ -5,9 +5,15 @@ import { SearchBar } from "@/components/SearchBar";
 import { Header } from "@/components/ui/header";
 import { Badge } from "@/components/ui/badge";
 import { CartButton } from "@/components/CartButton";
+import { Drawer } from "@/components/Drawer";
 
 export default function Home() {
   const [search, setSearch] = useState<string>("");
+  const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
+
+  const toggleDrawer = () => {
+    setDrawerOpen(!drawerOpen);
+  };
 
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen pb-20 gap-16">
@@ -25,10 +31,18 @@ export default function Home() {
             className="left-2"
           />
           <CartButton
-            onClick={() => console.log("cart")}
+            onClick={toggleDrawer}
           />
         </div>
       </Header>
+
+      <main className="flex gap-8 row-start-2 items-center sm:items-start p-4 w-[75%]">
+        <div className=" w-full">
+
+        </div>
+      </main>
+
+      <Drawer isOpen={drawerOpen} onClose={toggleDrawer} />
     </div>
   );
 };

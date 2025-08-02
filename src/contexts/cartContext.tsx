@@ -15,6 +15,7 @@ type cartProps = {
     removeQuantityOfProduct: (prod: productCartProps) => void;
     deleteProduct: (id: number) => void;
     calculateTotal: () => number;
+    productCounter: () => number;
 };
 
 const CartContext = createContext<cartProps>({} as cartProps);
@@ -86,8 +87,13 @@ export const CartProvaider = ({ children }: Readonly<{
         return parseFloat(sum);
     };
 
+    function productCounter() {
+        const sum = (productInCart.reduce((accumulator, { qtd }) => {return qtd + accumulator}, 0)).toFixed(2);
+        return parseFloat(sum);
+    }
+
     return (
-        <CartContext.Provider value={{ addProductInCart, productInCart, removeQuantityOfProduct, calculateTotal, deleteProduct }}>
+        <CartContext.Provider value={{ addProductInCart, productInCart, removeQuantityOfProduct, calculateTotal, deleteProduct, productCounter }}>
             { children }
         </CartContext.Provider>
     );
