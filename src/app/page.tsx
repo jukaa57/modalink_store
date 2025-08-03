@@ -8,7 +8,7 @@ import { CartButton } from "@/components/CartButton";
 import { Drawer } from "@/components/Drawer";
 import { Skeleton } from "@/components/ui/skeleton";
 
-import { getProducts } from "../api/products";
+import { getProducts } from "./api/products";
 import { Iproducts } from "@/types/products";
 import { CardProduct } from "@/components/CardProduct";
 import { useCartContext } from "@/contexts/cartContext";

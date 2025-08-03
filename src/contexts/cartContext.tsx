@@ -1,18 +1,11 @@
 "use client"
-import { createContext, useContext, useState, useEffect } from "react";
-
-type productCartProps = {
-    id: number;
-    title: string;
-    image?: string;
-    price: number;
-    qtd: number;
-};
+import { IproductsCart } from "@/types/products";
+import { createContext, useContext, useState } from "react";
 
 type cartProps = {
-    productInCart: productCartProps[];
-    addProductInCart: (prod: productCartProps) => void;
-    removeQuantityOfProduct: (prod: productCartProps) => void;
+    productInCart: IproductsCart[];
+    addProductInCart: (prod: IproductsCart) => void;
+    removeQuantityOfProduct: (prod: IproductsCart) => void;
     deleteProduct: (id: number) => void;
     calculateTotal: () => number;
     productCounter: () => number;
@@ -23,15 +16,9 @@ const CartContext = createContext<cartProps>({} as cartProps);
 export const CartProvaider = ({ children }: Readonly<{
     children: React.ReactNode; 
 }>) => {
+    const [productInCart, setProductInCart] = useState<IproductsCart[]>([]);
 
-    const [productInCart, setProductInCart] = useState<productCartProps[]>([]);
-
-    useEffect(() => {
-        // Here it is updated whenever the cart changes.  
-        calculateTotal();
-    }, [productInCart]);
-    
-    function addProductInCart(produdct: productCartProps) {
+    function addProductInCart(produdct: IproductsCart) {
         setProductInCart((prev) => {
             // Verify if product already exists to cart
             const productExists = prev.find((e) => e.id === produdct.id);
@@ -51,7 +38,7 @@ export const CartProvaider = ({ children }: Readonly<{
 
     };
 
-    function removeQuantityOfProduct(product: productCartProps) {
+    function removeQuantityOfProduct(product: IproductsCart) {
         setProductInCart((prev) => {
             // Try find the product in the cart
             const productIndex = prev.findIndex((e) => e.id === product.id);
