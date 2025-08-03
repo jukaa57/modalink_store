@@ -11,8 +11,10 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { getProducts } from "./api/products";
 import { Iproducts } from "@/types/products";
 import { CardProduct } from "@/components/CardProduct";
+import { useCartContext } from "@/contexts/cartContext";
 
 export default function Home() {
+  const { productInCart } = useCartContext();
   const [isPending, startTransition] = useTransition();
 
   const [listProducts, setListProducts] = useState<Iproducts[]>([]);
@@ -44,7 +46,7 @@ export default function Home() {
 
         <div className="flex flex-col items-center justify-start h-full pt-1.5">
           <Badge
-            count={0}
+            count={productInCart.length}
             className="left-2"
           />
           <CartButton

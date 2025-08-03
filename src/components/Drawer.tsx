@@ -34,7 +34,7 @@ export function Drawer({ isOpen, onClose }: drawerProps) {
           <div className="flex justify-between gap-1.5" >
             <h2 className="text-xl">Cart</h2>
             <IconShoppingCart className="text-foreground" />
-            <p>| Products counter {productCounter()}</p>
+            <p>| Total products {productCounter()}</p>
           </div>
           <button onClick={onClose} className="text-lg cursor-pointer">X</button>
         </div>
