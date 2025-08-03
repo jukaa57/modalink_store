@@ -57,9 +57,9 @@ export function CatalogProducts( {products}: catalogProps) {
             { search.length > 0 && (<p>Product(s) found: {filterTerms.length}</p>) }
             <br />
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
-              { filterTerms.map((product) => 
+              { filterTerms.map((product) => (
                 <CardProduct key={product.id} product={product} />
-              ) }
+              )) }
             </div>
           </>
         }
