@@ -1,10 +1,8 @@
 "use client"
 
 import { useCartContext } from '@/contexts/cartContext';
-import { IconShoppingCart, IconTrash } from '@tabler/icons-react';
-import Image from 'next/image';
-import { Card, CardContent } from './ui/card';
-import { ToggleQuantity } from './ToggleQtd';
+import { IconShoppingCart } from '@tabler/icons-react';
+import { CardProductCart } from './CardProductCart';
 
 type drawerProps = {
   isOpen: boolean;
@@ -12,12 +10,7 @@ type drawerProps = {
 }
 
 export function Drawer({ isOpen, onClose }: drawerProps) {
-  const { productInCart, calculateTotal, deleteProduct, productCounter } = useCartContext();
-
-  const shortensLongTitle = (title: string) => {
-    const txt = title.length > 35 ? title.substring(0,35) + '...' : title;
-    return txt;
-  };
+  const { productInCart, calculateTotal, productCounter } = useCartContext();
 
   return (
     <div>
@@ -41,38 +34,20 @@ export function Drawer({ isOpen, onClose }: drawerProps) {
           <button onClick={onClose} className="text-lg cursor-pointer">X</button>
         </div>
 
-        <div className="flex flex-col py-4 gap-6 items-center ">
-          <div className="space-y-1.5 px-4 h-[65dvh] lg:h-[70dvh] overflow-y-scroll  w-full">
-            {productInCart.map(prod => (
-              <Card key={prod.id} className="flex-row justify-between items-center py-2 px-4 ">
-                <CardContent className="p-0">
-                  <Image
-                    src={String(prod.image)}
-                    alt={prod.title}
-                    width={50}
-                    height={60}
-                  />
-                  <span >{ shortensLongTitle(prod.title) }</span>
-                </CardContent>
-
-                <div className='flex flex-col gap-1 items-center justify-center'>
-                  <ToggleQuantity product={prod}/>
-                  <div className='flex  gap-1 items-center justify-center'>
-                    <span>$ {(prod.price).toFixed(2)}</span>
-                    <IconTrash className='text-destructive' onClick={() => deleteProduct(prod.id)} />
-                  </div>
-                </div>
-              </Card>
-            ))}
+        <div className="flex flex-col py-4 px-2 gap-6 items-center ">
+          <div className="space-y-1.5 px-4 h-[65dvh] lg:h-[70dvh] overflow-y-scroll w-full">
+            {productInCart.map(prod =>
+              <CardProductCart key={prod.id} product={prod} />
+            )}
           </div>
 
           <div className="flex flex-col justify-between items-center w-[90%] rounded-xl p-4 gap-6 bg-background shadow-md">
             <div className="flex justify-between px-4 w-full">
               <p className='font-semibold'>Total</p>
-              <h3 className='font-bold'>$ {calculateTotal().toFixed(2)}</h3>
+              <p className='font-bold'>$ {calculateTotal().toFixed(2)}</p>
             </div>
 
-            <button className='bg-primary p-2 text-white rounded-md w-full' disabled={!!(productCounter() <= 0)} onClick={() => console.log("adad")} >Buy Now</button>
+            <button className={`p-2 text-white rounded-md w-full font-semibold ${!!(productCounter() <= 0) ? 'bg-gray-300' : 'bg-primary'}`} disabled={!!(productCounter() <= 0)} onClick={() => console.log("adad")} >Buy Now</button>
           </div>
         </div>
       </div>

@@ -15,7 +15,7 @@ export function CardProduct({ product: { id, image, price, title } }: cardProduc
         <Card className="justify-between rounded-lg shadow-sm p-3 transition-transform transform h-auto hover:scale-105" >
             <CardHeader className="flex justify-center mb-4 bg-white h-52 items-center roundend-md overflow-hidden">
                 <Image
-                    src={image}
+                    src={image as string}
                     alt={title}
                     width={120}
                     height={120}
