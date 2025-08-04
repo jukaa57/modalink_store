@@ -1,11 +1,9 @@
 "use client"
 
-import { Iproducts } from "@/types/products";
 import Image from "next/image";
+import { Iproducts } from "@/types/products";
 import { useCartContext } from "@/contexts/cartContext";
 import { Button } from "./ui/button";
-import { Drawer } from "./Drawer";
-import { useState } from "react";
 import { StarRating } from "./ui/starRating";
 import SimilarCarousel from "./SimilarCarousel";
 
@@ -16,11 +14,6 @@ type detailsProps = {
 
 export function ProductDetails({ product, similar }: detailsProps) {
   const { addProductInCart } = useCartContext();
-  const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
-
-  const toggleDrawer = () => {
-    setDrawerOpen(!drawerOpen);
-  };
 
     return (
         <>
@@ -57,11 +50,9 @@ export function ProductDetails({ product, similar }: detailsProps) {
 
             <div className="flex flex-col items-center justify-center mt-8 gap-10">
                 <h4 className="font-bold text-xl">Similar Products</h4>
-
                 <SimilarCarousel products={similar} />
             </div>
 
-            <Drawer isOpen={drawerOpen} onClose={toggleDrawer} />
         </>
     );
 };

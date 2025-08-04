@@ -18,7 +18,7 @@ export function CardProductCart({ product }: cardProductCartProps) {
     };
 
     return (
-        <Card className="flex-row justify-between items-center py-2 px-4 h-36 sm:h-28 md:h-32 text-sm">
+        <Card className="flex-row justify-between items-center py-2 px-4 h-32 sm:h-28 md:h-32 text-sm">
             <CardContent className="p-0 w-[70%]">
                 <Image
                     src={String(product.image)}
@@ -29,12 +29,12 @@ export function CardProductCart({ product }: cardProductCartProps) {
                 <span >{ shortensLongTitle(product.title) }</span>
             </CardContent>
 
-            <div className='flex flex-col items-center justify-between w-32'>
-                <ToggleQuantity product={product}/>
-                <div className='flex  gap-2 items-center justify-between'>
-                    <span className="font-semibold">$ {(product.price).toFixed(2)}</span>
+            <div className='flex flex-col items-center justify-between w-36'>
+                <div className='flex gap-1 items-center justify-between'>
+                    <ToggleQuantity product={product}/>
                     <IconTrash className='text-destructive' onClick={() => deleteProduct(product.id)} />
                 </div>
+                <span className="font-semibold">$ {(product.price).toFixed(2)}</span>
             </div>
         </Card>
     );

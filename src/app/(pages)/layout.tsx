@@ -9,6 +9,7 @@ import { Logo } from "@/components/Logo";
 import { SearchBar } from "@/components/SearchBar";
 import { useProductContext } from "@/contexts/productContext";
 import { usePathname } from 'next/navigation';
+import { Drawer } from "@/components/Drawer";
 
 export default function Layout({
   children
@@ -63,6 +64,8 @@ export default function Layout({
       <main>
         {children}
       </main>
+      
+      <Drawer isOpen={drawerOpen} onClose={toggleDrawer} />
     </>
   );
 }

@@ -20,10 +20,10 @@ export const CartProvaider = ({ children }: Readonly<{
 
     function addProductInCart(produdct: IproductsCart) {
         setProductInCart((prev) => {
-            // Verify if product already exists to cart
+            // Verifica se o produto já está no carrinho
             const productExists = prev.find((e) => e.id === produdct.id);
 
-            // if already exists, updated only the quantity
+            // Se já estiver, atualiza apenas a quantidade
             if (productExists) {
                 return prev.map((item) =>
                     item.id === produdct.id
@@ -32,7 +32,7 @@ export const CartProvaider = ({ children }: Readonly<{
                 );
             }
 
-            // If not exists gets the previous value and updates it by adding the new product uploaded
+            // Se não exitir retornar um novo array, copiando o valor do array anterior com o método spread e adiciona o novo produto
             return [...prev, produdct];
         });
 
@@ -40,15 +40,15 @@ export const CartProvaider = ({ children }: Readonly<{
 
     function removeQuantityOfProduct(product: IproductsCart) {
         setProductInCart((prev) => {
-            // Try find the product in the cart
+            // Tenta encontrar o produto no carrinho
             const productIndex = prev.findIndex((e) => e.id === product.id);
 
-            // If not exists, return the cart without changes
+            // Se não existir, retorna o carrinho sem mudanças
             if (productIndex === -1) return prev;
 
             const productInCart = prev[productIndex];
 
-            // If the quantity is greater than 1, decrease the quantity
+            // Se ainda houver quantidade, vai decrementando
             if (productInCart.qtd > 1) {
                 return prev.map((item) =>
                     item.id === product.id
@@ -56,25 +56,26 @@ export const CartProvaider = ({ children }: Readonly<{
                         : item
                 );
             }
-            // remove from cart if less than or equal to 1
+            // remove do carrinho se não houver quantidade
             return prev.filter((item) => item.id !== product.id);
         });
     };
 
     function deleteProduct(prodId: number) {
         setProductInCart((prev) => {
-            // remove product from cart
+            // remove o produto do carrinho
             return prev.filter((item) => item.id !== prodId);
         });
     };
 
     function calculateTotal() {
-        // Sum total price products
+        // Soma preço dos produtos e retorna o valor total do carrinho
         const sum = (productInCart.reduce((accumulator, {price, qtd}) => {return (price * qtd) + accumulator}, 0)).toFixed(2);
         return parseFloat(sum);
     };
 
     function productCounter() {
+        // Soma a quantidade total de produtos no carrinho, mesmo quando há mais de 1 do mesmo produto
         const sum = (productInCart.reduce((accumulator, { qtd }) => {return qtd + accumulator}, 0)).toFixed(2);
         return parseFloat(sum);
     }
