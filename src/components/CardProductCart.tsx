@@ -6,8 +6,8 @@ import { ToggleQuantity } from "./ToggleQtd";
 import { IconTrash } from "@tabler/icons-react";
 
 type cardProductCartProps = {
-    product: IproductsCart
-}
+    product: IproductsCart;
+};
 
 export function CardProductCart({ product }: cardProductCartProps) {
     const { deleteProduct } = useCartContext();

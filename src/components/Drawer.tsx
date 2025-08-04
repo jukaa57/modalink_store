@@ -6,8 +6,8 @@ import { CardProductCart } from './CardProductCart';
 
 type drawerProps = {
   isOpen: boolean;
-  onClose: () => void
-}
+  onClose: () => void;
+};
 
 export function Drawer({ isOpen, onClose }: drawerProps) {
   const { productInCart, calculateTotal, productCounter } = useCartContext();
