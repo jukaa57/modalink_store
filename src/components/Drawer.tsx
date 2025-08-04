@@ -4,6 +4,8 @@ import { useCartContext } from '@/contexts/cartContext';
 import { IconShoppingCart } from '@tabler/icons-react';
 import { CardProductCart } from './CardProductCart';
 import { Text } from './ui/text';
+import { useRouter } from 'next/navigation';
+import { Button } from './ui/button';
 
 type drawerProps = {
   isOpen: boolean;
@@ -11,7 +13,9 @@ type drawerProps = {
 };
 
 export function Drawer({ isOpen, onClose }: drawerProps) {
-  const { productInCart, calculateTotal, productCounter } = useCartContext();
+  const { productInCart, calculateTotal, productCounter, cleanUpCart } = useCartContext();
+
+  const router = useRouter();
 
   return (
     <div>
@@ -47,7 +51,16 @@ export function Drawer({ isOpen, onClose }: drawerProps) {
               <Text type='title'>Total</Text>
               <Text type='title' className='font-extrabold'>$ {calculateTotal().toFixed(2)}</Text>
             </div>
-            <button className={`p-2 text-white rounded-md w-full font-semibold ${!!(productCounter() <= 0) ? 'bg-gray-300' : 'bg-primary'}`} disabled={!!(productCounter() <= 0)} onClick={() => console.log("adad")} >Buy Now</button>
+            <Button
+            className={`p-2  w-full font-semibold `}
+            disabled={!!(productCounter() <= 0)}
+            onClick={() => {
+              onClose();
+              cleanUpCart();
+              router.replace('/success')
+            }}>
+              Buy Now
+            </Button>
           </div>
         </div>
       </div>

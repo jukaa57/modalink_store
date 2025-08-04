@@ -6,6 +6,7 @@ import { useCartContext } from "@/contexts/cartContext";
 import { Button } from "./ui/button";
 import { StarRating } from "./ui/starRating";
 import SimilarCarousel from "./SimilarCarousel";
+import { Text } from "./ui/text";
 
 type detailsProps = {
     product: Iproducts;
@@ -16,28 +17,31 @@ export function ProductDetails({ product, similar }: detailsProps) {
   const { addProductInCart } = useCartContext();
 
     return (
-        <>
-            <div className="flex flex-col p-4 gap-4 lg:flex-row md:w-[90%] lg:w-[80%]">
-                <div className="bg-white flex items-center justify-center lg:w-full">
+        <div className="items-center justify-center px-4 py-12">
+            <div className="flex flex-col gap-4 lg:flex-row md:w-[90%] lg:w-[80%]">
+                <div className="bg-white flex items-center justify-center lg:w-full rounded-md ">
                     <Image src={product.image as string} alt={product.title} width={150} height={150} className=" lg:w-96"  />
                 </div>
 
                 <div className="w-full">
-                    <h1 className="text-2xl font-bold mt-4">{product.title}</h1>
-                    <code className="text-gray-600">{product.category}</code>
+                    <div className="flex flex-col gap-4">
+                        <Text type="title" className="text-2xl">{product.title}</Text>
 
-                    <div className="flex justify-start gap-4 items-center">
-                        <div className="flex items-center gap-2">
-                            <p>{product.rating.rate}</p>
-                            <StarRating rating={product.rating.rate} />
+                        <code className="text-gray-600 bg-muted px-1.5 rounded-md w-fit">{product.category}</code>
+
+                        <div className="flex justify-start gap-4 items-center">
+                            <div className="flex items-center gap-2">
+                                <p>{product.rating.rate}</p>
+                                <StarRating rating={product.rating.rate} />
+                            </div>
+                            <p className="text-gray-600">({product.rating.count})</p>
                         </div>
-                        <p className="text-gray-600">({product.rating.count})</p>
                     </div>
 
-                    <p className="text-lg mt-2">$ {product.price.toFixed(2)}</p>
-                    <br />
-                    <p className="mt-4 font-semibold">About product</p>
-                    <p className="">{product.description}</p>
+                    <Text type="title" className="text-3xl mt-8">$ {product.price.toFixed(2)}</Text>
+
+                    <Text className="mt-4 font-semibold ">About product</Text>
+                    <Text>{product.description}</Text>
 
                     <Button
                         className="text-white cursor-pointer mt-16 w-full lg:w-42"
@@ -48,11 +52,10 @@ export function ProductDetails({ product, similar }: detailsProps) {
                 </div>
             </div>
 
-            <div className="flex flex-col items-center justify-center mt-8 gap-10">
-                <h4 className="font-bold text-xl">Similar Products</h4>
+            <div className="flex flex-col items-center justify-center mt-8 gap-10 bg-white pt-4 rounded-md">
+                <Text type="title" className="text-2xl">Similar Products</Text>
                 <SimilarCarousel products={similar} />
             </div>
-
-        </>
+        </div>
     );
 };

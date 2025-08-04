@@ -26,6 +26,7 @@ export default function Layout({
     setDrawerOpen(!drawerOpen);
   };
 
+  // Se for página prinipal mostrará barra de pesquisa
   const ShowSearchBar = () => {
     if(router.trim() === "/") {
       return true;
@@ -49,7 +50,7 @@ export default function Layout({
           />
         }
 
-        <div className="flex flex-col items-center justify-start h-full pt-1.5">
+        <div className="flex flex-col items-center justify-start pt-1.5">
           <Badge
             className="left-1.5"
             count={productInCart.length}
@@ -60,11 +61,9 @@ export default function Layout({
           />
         </div>
       </Header>
-
-      <main>
+      <main className="bg-gray-50 py-16 min-h-screen">
         {children}
       </main>
-      
       <Drawer isOpen={drawerOpen} onClose={toggleDrawer} />
     </>
   );

@@ -9,6 +9,7 @@ type cartProps = {
     deleteProduct: (id: number) => void;
     calculateTotal: () => number;
     productCounter: () => number;
+    cleanUpCart: () => void;
 };
 
 const CartContext = createContext<cartProps>({} as cartProps);
@@ -30,7 +31,7 @@ export const CartProvaider = ({ children }: Readonly<{
                         ? { ...item, qtd: item.qtd + produdct.qtd }
                         : item
                 );
-            }
+            };
 
             // Se não exitir retornar um novo array, copiando o valor do array anterior com o método spread e adiciona o novo produto
             return [...prev, produdct];
@@ -48,7 +49,7 @@ export const CartProvaider = ({ children }: Readonly<{
 
             const productInCart = prev[productIndex];
 
-            // Se ainda houver quantidade, vai decrementando
+            // Se ainda houver quantidade do produto, vai decrementando 
             if (productInCart.qtd > 1) {
                 return prev.map((item) =>
                     item.id === product.id
@@ -61,27 +62,32 @@ export const CartProvaider = ({ children }: Readonly<{
         });
     };
 
+    // remove o produto do carrinho
     function deleteProduct(prodId: number) {
         setProductInCart((prev) => {
-            // remove o produto do carrinho
             return prev.filter((item) => item.id !== prodId);
         });
     };
 
+    // Soma preço dos produtos e retorna o valor total do carrinho
     function calculateTotal() {
-        // Soma preço dos produtos e retorna o valor total do carrinho
         const sum = (productInCart.reduce((accumulator, {price, qtd}) => {return (price * qtd) + accumulator}, 0)).toFixed(2);
         return parseFloat(sum);
     };
 
+    // Soma a quantidade total de produtos no carrinho, mesmo quando há mais de 1 do mesmo produto
     function productCounter() {
-        // Soma a quantidade total de produtos no carrinho, mesmo quando há mais de 1 do mesmo produto
         const sum = (productInCart.reduce((accumulator, { qtd }) => {return qtd + accumulator}, 0)).toFixed(2);
         return parseFloat(sum);
-    }
+    };
+
+
+    function cleanUpCart() {
+        setProductInCart([]);
+    };
 
     return (
-        <CartContext.Provider value={{ addProductInCart, productInCart, removeQuantityOfProduct, calculateTotal, deleteProduct, productCounter }}>
+        <CartContext.Provider value={{ addProductInCart, productInCart, removeQuantityOfProduct, calculateTotal, deleteProduct, productCounter, cleanUpCart }}>
             { children }
         </CartContext.Provider>
     );

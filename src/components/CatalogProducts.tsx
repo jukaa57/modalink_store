@@ -13,7 +13,7 @@ export function CatalogProducts( {products}: catalogProps) {
   const { filterTerms, search, productsFound } = useProductContext();
  
   return (
-    <div className="flex gap-8 row-start-2 items-center sm:items-start p-4 w-full md:w-[90%] lg:w-[75%] self-start">
+    <div className="flex gap-8 row-start-2 items-center sm:items-start p-4 w-full md:w-[90%] lg:w-[80%] self-start">
       <div className=" w-full ">
       { 
         <>
@@ -21,7 +21,7 @@ export function CatalogProducts( {products}: catalogProps) {
             <Text className="text-sm">Product(s) found: {productsFound}</Text>
           }
           <br />
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
+          <div className="justify-items-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 w-full">
             { filterTerms(products).map((product) => 
               <CardProduct key={product.id} product={product} />
             )}

@@ -10,7 +10,7 @@
   --muted-foreground: #737373;
   --primary: #2b7fff;
   --primary-foreground: #eff6ff;
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: rgb(231, 0, 11);
 }
 
 @theme inline {
@@ -38,7 +38,7 @@
     --card: #171717;
     --muted: #262626;
     --muted-foreground: #a1a1a1;
-    --destructive: oklch(0.704 0.191 22.216);
+    --destructive: #ff6467;
     --primary: #155dfb;
     --primary-foreground: #1c398e;
   }
@@ -48,7 +48,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
-
+  
   ::-webkit-scrollbar {
     width: 8px;
   }
