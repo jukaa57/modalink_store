@@ -4,6 +4,7 @@ import { Iproducts } from "@/types/products";
 import { Button } from "./ui/button";
 import { useCartContext } from "@/contexts/cartContext";
 import Link from "next/link";
+import { Text } from "./ui/text";
 
 type cardProductProps = {
     product: Iproducts;
@@ -26,8 +27,8 @@ export function CardProduct({ product: { id, image, price, title } }: cardProduc
                 </CardHeader>
 
                 <CardContent className="text-center">
-                    <h4 className="text-sm font-medium text-foreground mb-2">{title}</h4>
-                    <p className="text-sm font-bold text-foreground">$ {price.toFixed(2)}</p>
+                    <Text className="text-sm mb-2">{title}</Text>
+                    <Text className="text-sm font-bold">$ {price.toFixed(2)}</Text>
                 </CardContent>
             </Link>
 

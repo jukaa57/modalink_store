@@ -4,6 +4,7 @@ import { IproductsCart } from "@/types/products";
 import { useCartContext } from "@/contexts/cartContext";
 import { ToggleQuantity } from "./ToggleQtd";
 import { IconTrash } from "@tabler/icons-react";
+import { Text } from "./ui/text";
 
 type cardProductCartProps = {
     product: IproductsCart;
@@ -18,24 +19,25 @@ export function CardProductCart({ product }: cardProductCartProps) {
     };
 
     return (
-        <Card className="flex-row justify-between items-center py-2 px-4 h-32 sm:h-28 md:h-32 text-sm">
-            <CardContent className="p-0 w-[70%]">
-                <Image
-                    src={String(product.image)}
-                    alt={product.title}
-                    width={40}
-                    height={60}
-                />
-                <span >{ shortensLongTitle(product.title) }</span>
-            </CardContent>
-
-            <div className='flex flex-col items-center justify-between w-36'>
-                <div className='flex gap-1 items-center justify-between'>
-                    <ToggleQuantity product={product}/>
-                    <IconTrash className='text-destructive' onClick={() => deleteProduct(product.id)} />
+        <Card className="flex-row justify-center gap-0 items-center py-2 px-4 h-32 sm:h-28 md:h-32">
+            <CardContent className="p-0 flex justify-between w-full">
+                <div className="w-[65%] ">
+                    <Image
+                        src={String(product.image)}
+                        alt={product.title}
+                        width={40}
+                        height={60}
+                    />
+                    <Text className="text-sm" >{ shortensLongTitle(product.title) }</Text>
                 </div>
-                <span className="font-semibold">$ {(product.price).toFixed(2)}</span>
-            </div>
+                <div className='flex flex-col items-center justify-center w-42'>
+                    <div className='flex gap-4 items-center justify-between'>
+                        <ToggleQuantity product={product}/>
+                        <IconTrash className='text-destructive' onClick={() => deleteProduct(product.id)} />
+                    </div>
+                    <Text type="title">$ {(product.price).toFixed(2)}</Text>
+                </div>
+            </CardContent>
         </Card>
     );
 };

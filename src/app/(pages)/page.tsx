@@ -6,7 +6,7 @@ export default async function Index() {
   const products: Iproducts[] = await fetchProducts();
 
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen pb-20 gap-16">  
+    <div className="font-sans items-center justify-items-center min-h-screen gap-16">  
       <CatalogProducts products={products} />
     </div>
   );

@@ -3,6 +3,7 @@
 import { useCartContext } from '@/contexts/cartContext';
 import { IconShoppingCart } from '@tabler/icons-react';
 import { CardProductCart } from './CardProductCart';
+import { Text } from './ui/text';
 
 type drawerProps = {
   isOpen: boolean;
@@ -26,16 +27,16 @@ export function Drawer({ isOpen, onClose }: drawerProps) {
       >
         <div className="flex bg-background shadow-md justify-between p-4 border-b border-border">
           <div className="flex justify-between items-center gap-1.5" >
-            <h2 className="text-xl">Cart</h2>
+            <Text type='title' className="text-xl">Cart</Text>
             <IconShoppingCart className="text-foreground" />
-            <p>| Total Products {productCounter()}</p>
+            <Text>| Total Products {productCounter()}</Text>
           </div>
 
           <button onClick={onClose} className="text-lg cursor-pointer">X</button>
         </div>
 
         <div className="flex flex-col py-4 px-2 gap-6 items-center ">
-          <div className="space-y-1.5 px-4 h-[65dvh] lg:h-[70dvh] overflow-y-scroll w-full">
+          <div className="space-y-1.5 h-[65dvh] lg:h-[70dvh] overflow-y-scroll w-full">
             {productInCart.map(prod =>
               <CardProductCart key={prod.id} product={prod} />
             )}
@@ -43,10 +44,9 @@ export function Drawer({ isOpen, onClose }: drawerProps) {
 
           <div className="flex flex-col justify-between items-center w-[90%] rounded-xl p-4 gap-6 bg-background shadow-md">
             <div className="flex justify-between px-4 w-full">
-              <p className='font-semibold'>Total</p>
-              <p className='font-bold'>$ {calculateTotal().toFixed(2)}</p>
+              <Text type='title'>Total</Text>
+              <Text type='title' className='font-extrabold'>$ {calculateTotal().toFixed(2)}</Text>
             </div>
-
             <button className={`p-2 text-white rounded-md w-full font-semibold ${!!(productCounter() <= 0) ? 'bg-gray-300' : 'bg-primary'}`} disabled={!!(productCounter() <= 0)} onClick={() => console.log("adad")} >Buy Now</button>
           </div>
         </div>
