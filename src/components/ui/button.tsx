@@ -9,11 +9,12 @@ export function Button({
   return (
     <button
       className={cn(`h-9 px-4 py-2 has-[>svg]:px-3 bg-primary 
-        text-primary-foreground shadow-xs hover:bg-primary/90 
+        text-white font-semibold shadow-xs hover:bg-primary/90 
         items-center justify-center rounded-md text-sm cursor-pointer
-        font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 
+        transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 
         [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] 
-        aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive`, className)}
+        aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive
+        `, className)}
       {...props}
     />
   );

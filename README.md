@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛍️ ModaLink - Catálogo de Produtos
 
-## Getting Started
+Este projeto é um desafio técnico desenvolvido com **Next.js**, cujo objetivo é criar uma aplicação de catálogo de produtos com funcionalidades completas de e-commerce como:
 
-First, run the development server:
+- Visualização de produtos
+- Adição ao carrinho
+- Busca de produtos
+- Cálculo de quantidade e valor total do carrinho
+- Página de detalhes com produtos similares
+
+## Deploy
+O projeto está disponível em http://modalink.157.250.195.14.sslip.io
+
+O Deploy foi feito em uma vps utilizando [Coolify](https://coolify.io/) para facilitar o processo de build.
+
+---
+
+## 🚀 Tecnologias Utilizadas
+
+- [Next.js](https://nextjs.org/)
+- [React](https://react.dev/)
+- [Tailwind CSS](https://tailwindcss.com/) — para estilização responsiva
+- [Context API](https://reactjs.org/docs/context.html) — para gerenciamento do carrinho
+
+---
+
+## 📦 Funcionalidades
+
+- ✅ Listagem de produtos
+- ✅ Buscar produtos por nome ou categoria
+- ✅ Adicionar/remover produtos do carrinho
+- ✅ Alterar a quantidade de produtos no carrinho
+- ✅ Exibir o valor total do carrinho
+- ✅ Ver página de detalhes do produto
+- ✅ Ver sugestões de produtos similares baseado na categoria
+- ✅ Finalizar Compra
+
+---
+
+## 🛠️ Instalação
+
+Clone o projeto:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/jukaa57/modalink_store.git
+cd modalink_store
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Instale as dependências:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Variável de ambiente
 
-## Learn More
+```bash
+Renomeie o arquivo .env.sample para .env.local
+Coloque a url da api https://fakestoreapi.com
 
-To learn more about Next.js, take a look at the following resources:
+ex: API_URL=https://fakestoreapi.com
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Execute o servidor de desenvolvimento:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm dev
+```
 
-## Deploy on Vercel
+Acesse em: [http://localhost:3000](http://localhost:3000)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## 📌 Desafio
+
+Este projeto foi desenvolvido como um desafio técnico para avaliar habilidades com:
+
+- Next.js e SSR
+- Componentização e reutilização
+- Context API para estados globais
+- Lógica de carrinho e manipulação de listas

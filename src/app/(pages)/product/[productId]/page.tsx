@@ -14,8 +14,10 @@ export default async function ProductDetailPage({ params }: productsDetailsProps
     const product = await fetchProductById(productId);
     const products = await fetchProducts();
 
+    if (!product) return notFound()
+
     // Filtra produtos da mesma categoria para mostrar similares
-    const similarProducts = products.filter(prod => prod.category === product.category && prod.id !== product.id);
+    const similarProducts = products.filter(prod => prod.category === product?.category && prod.id !== product.id);
 
     return (
       <ProductDetails product={product} similar={similarProducts} />

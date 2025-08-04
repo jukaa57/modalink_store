@@ -14,7 +14,7 @@ type productsProps = {
 
 export default function SimilarCarousel({ products }: productsProps) {
   return (
-    <div className="w-[75%] py-6 items-center">
+    <div className="w-full  xl:w-[75%] py-6 items-center">
       <Swiper
         modules={[Navigation, Pagination]}
         slidesPerView={1}
@@ -22,9 +22,10 @@ export default function SimilarCarousel({ products }: productsProps) {
         loop
         pagination={{ clickable: true }}
         breakpoints={{
-          640: { slidesPerView: 2 },
-          768: { slidesPerView: 3 },
-          1024: { slidesPerView: 4 },
+          640: { slidesPerView: 1 },
+          768: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 },
+          1320: { slidesPerView: 4 },
         }}
       >
         {products.map((product) => (

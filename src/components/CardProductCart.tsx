@@ -26,6 +26,7 @@ export function CardProductCart({ product }: cardProductCartProps) {
                         src={String(product.image)}
                         alt={product.title}
                         width={40}
+                        className="bg-white"
                         height={60}
                     />
                     <Text className="text-sm" >{ shortensLongTitle(product.title) }</Text>

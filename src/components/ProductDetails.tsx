@@ -27,7 +27,7 @@ export function ProductDetails({ product, similar }: detailsProps) {
                     <div className="flex flex-col gap-4">
                         <Text type="title" className="text-2xl">{product.title}</Text>
 
-                        <code className="text-gray-600 bg-muted px-1.5 rounded-md w-fit">{product.category}</code>
+                        <code className="text-foreground bg-muted px-1.5 rounded-md w-fit">{product.category}</code>
 
                         <div className="flex justify-start gap-4 items-center">
                             <div className="flex items-center gap-2">
@@ -52,7 +52,7 @@ export function ProductDetails({ product, similar }: detailsProps) {
                 </div>
             </div>
 
-            <div className="flex flex-col items-center justify-center mt-8 gap-10 bg-white pt-4 rounded-md">
+            <div className="flex flex-col items-center mt-8 gap-10 bg-muted w-full pt-4 rounded-md">
                 <Text type="title" className="text-2xl">Similar Products</Text>
                 <SimilarCarousel products={similar} />
             </div>

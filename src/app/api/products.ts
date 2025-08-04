@@ -7,8 +7,10 @@ const api = axios.create({ baseURL: process.env.API_URL });
 export async function fetchProducts(): Promise<Iproducts[]> {  
   try {
     const res = await api.get("/products");
-    if (res.status !== 200) 
-      throw new Error('Error get products');
+    if (res.status !== 200) {
+      console.error('Error get products');
+      return [];
+    };
 
     return res.data;
   } catch (error) {
@@ -16,11 +18,13 @@ export async function fetchProducts(): Promise<Iproducts[]> {
   };
 };
 
-export async function fetchProductById(productId: string): Promise<Iproducts> {
+export async function fetchProductById(productId: string): Promise<Iproducts | null> {
   try {
     const res = await api.get(`/products/${productId}`);
-    if (res.status !== 200) 
-      throw new Error('Error get products');
+    if (res.status !== 200) {
+      console.error('Error get products');
+      return null
+    }
 
     return res.data;
   } catch (error) {

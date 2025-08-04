@@ -52,7 +52,7 @@ export function Drawer({ isOpen, onClose }: drawerProps) {
               <Text type='title' className='font-extrabold'>$ {calculateTotal().toFixed(2)}</Text>
             </div>
             <Button
-            className={`p-2  w-full font-semibold `}
+            className={`p-2 w-full`}
             disabled={!!(productCounter() <= 0)}
             onClick={() => {
               onClose();
